@@ -2,15 +2,19 @@
   "name": "whatsapp-bot",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "https://github.com/dhruvangg/whatsapp-bot.git",
   "scripts": {
-    "start": "node webhook.js",
+    "start": "node index.js",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "engines": {
+    "node": "20.x"
+  },
+  "keywords": ["whatsapp", "bot", "interactive", "buttons"],
+  "author": "Dhruvang Gupta",
   "license": "ISC",
   "type": "commonjs",
-  "description": "",
+  "description": "A WhatsApp bot that asks predefined questions and handles responses dynamically.",
   "dependencies": {
     "axios": "^1.7.9",
     "body-parser": "^1.20.3",
