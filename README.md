@@ -1,3 +1,5 @@
+[![CI Status](https://github.com/dhruvangg/whatsapp-bot/actions/workflows/node.js.yml/badge.svg)]()
+
 ### **Step-by-Step Guide to Create a WhatsApp Bot with Interactive Buttons Using WhatsApp Cloud API**
 
 This guide will walk you through setting up a WhatsApp bot with interactive buttons. The bot will ask users predefined questions and handle responses dynamically.
@@ -47,6 +49,9 @@ This guide will walk you through setting up a WhatsApp bot with interactive butt
 
 ### **Step 4: Create the Webhook Server**
 1. **Set Up a Webhook Server**:
+
+    > Reference: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples
+
    Create a file called `index.js` and include the following code:
    ```javascript
    const express = require('express');
