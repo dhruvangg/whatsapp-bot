@@ -6,7 +6,6 @@ const { handleIncomingMessage } = require('./interactiveFlow');
 const app = express();
 app.use(bodyParser.json());
 
-// Verify webhook
 app.get('/webhook', (req, res) => {
     const VERIFY_TOKEN = process.env.TOKEN;
     const mode = req.query['hub.mode'];
@@ -27,44 +26,37 @@ app.post('/webhook', (req, res) => {
         body.entry.forEach((entry) => {
             entry.changes.forEach((change) => {
                 const value = change.value;
-
-                // Check if there are messages
+                
                 if (value.messages && value.messages.length > 0) {
                     const message = value.messages[0];
-                    const from = message.from; // Sender's phone number
-                    const type = message.type; // Type of message (e.g., text, interactive)
+                    const from = message.from; 
+                    const type = message.type; 
                     let userInput = null;
 
-                    // Handle text messages
                     if (type === 'text') {
                         userInput = message.text.body;
                     }
 
-                    // Handle interactive button replies
                     if (type === 'interactive') {
                         const interactiveType = message.interactive.type;
 
                         if (interactiveType === 'button_reply') {
-                            userInput = message.interactive.button_reply.title; // Text of the selected button
+                            userInput = message.interactive.button_reply.title; 
                         }
                     }
 
                     if (userInput) {
                         console.log(`Message received from ${from}: ${userInput}`);
-
-                        // Call your handler function
                         handleIncomingMessage(from, userInput);
                     } else {
                         console.log(`Unsupported message type from ${from}: ${type}`);
                     }
-                } else {
-                    console.log('No messages in this webhook event');
-                }
+                } 
             });
         });
-        res.sendStatus(200); // Acknowledge the webhook event
+        res.sendStatus(200); 
     } else {
-        res.sendStatus(404); // Not a WhatsApp event
+        res.sendStatus(404); 
     }
 });
 

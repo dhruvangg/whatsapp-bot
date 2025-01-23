@@ -6,11 +6,8 @@ const accessToken = process.env.TOKEN;
 const phoneNumberId = process.env.PHONE_ID; // Found in your app dashboard
 const recipientNumber = 919328215855; // Include the country code, e.g., 14151234567
 
-// Send a text message
-// Store user conversation states
 const userStates = {};
 
-// Helper function to send interactive buttons
 async function sendButtons(to, text, buttons) {
     if(buttons.length === 0 || !text || !to) return
     // WhatsApp supports only 1-3 buttons, so we slice the buttons array if needed
@@ -124,7 +121,7 @@ async function handleIncomingMessage(from, text) {
             } of ${userState.orderItem} will be right there in 10 minutes.`;
 
             await sendMessage(from, confirmationMessage);
-            delete userStates[from]; // Reset state after order
+            delete userStates[from]; 
         } else {
             await sendButtons(from, 'Please select a valid quantity.', ['1', '2', '3', '4', '5']);
         }
